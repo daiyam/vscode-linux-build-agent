@@ -1,11 +1,12 @@
 jobs:
 - job: x64
   pool:
-    vmImage: 'Ubuntu-16.04'
+    vmImage: 'Ubuntu-18.04'
   steps:
   - template: build.yml
     parameters:
       arch: x64
+      tag: bionic
 
 - job: armhf
   pool:
@@ -15,6 +16,7 @@ jobs:
     parameters:
       qemu: 'true'
       arch: armhf
+      tag: armhf-temp
 
 - job: arm64
   pool:
@@ -24,6 +26,7 @@ jobs:
     parameters:
       qemu: 'true'
       arch: arm64
+      tag: arm64-temp
 
 - job: alpine
   pool:
@@ -32,6 +35,7 @@ jobs:
   - template: build.yml
     parameters:
       arch: alpine
+      tag: alpine-temp
 
 - job: stretch_arm64
   pool:
@@ -40,6 +44,7 @@ jobs:
   - template: build.yml
     parameters:
       arch: stretch-arm64
+      tag: stretch-arm64-temp
 
 - job: stretch_armhf
   pool:
@@ -48,6 +53,7 @@ jobs:
   - template: build.yml
     parameters:
       arch: stretch-armhf
+      tag: stretch-arm64-temp
 
 - job: buster_arm64
   pool:
@@ -56,6 +62,7 @@ jobs:
   - template: build.yml
     parameters:
       arch: buster-arm64
+      tag: buster-arm64-temp
 
 - job: buster_armhf
   pool:
@@ -64,3 +71,4 @@ jobs:
   - template: build.yml
     parameters:
       arch: buster-armhf
+      tag: buster-armhf-temp
