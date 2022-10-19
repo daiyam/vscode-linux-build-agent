@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-# add backports
+# add backports (VSCodium)
 RUN echo "deb http://deb.debian.org/debian stretch-backports main" | tee -a /etc/apt/sources.list
 RUN apt-get update && apt-get install -y -t stretch-backports git git-man
 
@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libxkbfile-dev:arm64 \
   libsecret-1-dev:arm64 \
   curl \
-  jq \
   gnupg \
   unzip \
   # Dependencies for building python from source
@@ -34,7 +33,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   libbz2-dev \
   libffi-dev \
   zlib1g-dev \
-  bc
+  # VSCodium
+  jq
 
 # Compile python3.9 from source
 RUN curl -O https://www.python.org/ftp/python/3.9.4/Python-3.9.4.tar.xz
@@ -53,7 +53,7 @@ RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 RUN apt-get update && apt-get install -y yarn
 
-# ripgrep
+# ripgrep (VSCodium)
 RUN curl -L -O https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz
 RUN tar xfz ripgrep-13.0.0-arm-unknown-linux-gnueabihf.tar.gz
 RUN mv ripgrep-13.0.0-arm-unknown-linux-gnueabihf/rg /usr/bin/
